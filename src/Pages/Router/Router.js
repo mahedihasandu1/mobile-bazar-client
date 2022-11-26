@@ -1,4 +1,5 @@
 import Blog from "../../Blog/Blog";
+import AllProductContainer from "../../Products/AllProductContainer";
 import AllProducts from "../../Products/AllProducts";
 import AddProduct from "../AddProduct/AddProduct";
 import AllSeller from "../Dashboard/AllUser/AllSeller";
@@ -22,7 +23,7 @@ export const router=createBrowserRouter([
     {path:'/',errorElement:<ErrorPage></ErrorPage>,element:<Main></Main>,children:[
         {path:'/',element:<Home></Home>},
         {path:'/home',element:<Home></Home>},
-        {path:'/category/:id',element:<AllProducts></AllProducts>, loader:({params})=>fetch(`http://localhost:5000/category/${params.id}`)},
+        {path:'/category/:id',element:<AllProductContainer></AllProductContainer>, loader:({params})=>fetch(`http://localhost:5000/category/${params.id}`)},
         {path:'/login',element:<Login></Login>},
         {path:'/signup',element:<SignUp></SignUp>},
         {path:'/blog',element:<Blog></Blog>},
