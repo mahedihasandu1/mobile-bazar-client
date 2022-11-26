@@ -25,23 +25,25 @@ const AllProducts = () => {
                     products?.map(product =>
                         <div key={product._id} className="card lg:card-side h-full bg-gray-100 shadow-xl">
                             <figure className='images'><img src={product?.image} alt="Album" /></figure>
-                            <div className="card-body">
-                                <h2 className="card-title">{product.model}</h2>
+                            <div className="card-body flex">
+                            <span className='-mb-5   text-fuchsia-800 text-md font-semibold'><p>Device Model </p></span>
+                                <h2 className="card-title my-3">{product.model}</h2>
+                               
                                 <div className="avatar">
                                     <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                                         <img alt='' src={product?.seller} />
                                     </div>
                                     <p className='ml-5 text-xl font-semibold'>{product?.name}</p>
+
                                 </div>
                                 <div>
 
                                 </div>
-                                    <p>Buy Price : ${product.buy}</p>
-                                    <p>Selling : ${product.sell}</p>
-                                    <p>Selling : ${product.sell}</p>
-                                    <p>Selling : ${product.sell}</p>
-                                    <p>Selling : ${product.sell}</p>
-
+                                <del className='text-error font-semibold italic'><p >Buy Price: ${product.buy}</p></del>
+                                    <p className='text-sm font-bold'>Selling: ${product.sell}</p>
+                                    <p className='text-md font-semibold text-orange-600 '>Selling Location : {product.location}</p>
+                                    <p>Post Date: {product.time}</p>
+                                    <p className='text-sm font-bold opacity-50'>Years of used: {product.useYear}</p>
                                 <div className="card-actions items-end justify-end">
                                     <button className="btn btn-primary">Book Now</button>
                                 </div>

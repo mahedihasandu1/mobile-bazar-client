@@ -11,8 +11,20 @@ const AllSeller = () => {
             return data;
         }
     })
+    const handleDeleteUser = (id) => {
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: 'DELETE',
 
+        })
+            .then(res => res.json)
+            .then(data => {
+                toast.success("Delete successfully")
+                refetch()
+            })
+   
+}
     const handleVerifySeller = id => {
+        
         fetch(`http://localhost:5000/users/${id}`, {
             method: 'PUT',
             headers:{
@@ -77,7 +89,7 @@ const AllSeller = () => {
                                                 className='btn btn-sm'>Verified</button>}
 
                                 </th>
-                                <td><button className='btn btn-xs btn-secondary '>Delete</button></td>
+                                <td><button onClick={()=>handleDeleteUser(user._id)} className='btn btn-xs btn-secondary '>Delete</button></td>
                             </tr>)
                     }
                 </tbody>

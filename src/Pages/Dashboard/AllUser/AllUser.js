@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import toast from 'react-hot-toast';
 
 const AllUser = () => {
-    const { data: users = [] } = useQuery({
+    const { data: users = [] ,refetch} = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/users?userType=Buyer')
@@ -12,7 +13,16 @@ const AllUser = () => {
     })
 
     const handleDeleteUser = (id) => {
-        console.log(id);
+            fetch(`http://localhost:5000/users/${id}`, {
+                method: 'DELETE',
+
+            })
+                .then(res => res.json)
+                .then(data => {
+                    toast.success("Delete successfully")
+                    refetch()
+                })
+       
     }
     return (
         <div className="overflow-x-auto w-full">
@@ -25,7 +35,7 @@ const AllUser = () => {
                         <th>Name</th>
                         <th>Job</th>
                         <th>Favorite Color</th>
-                       
+
                         <th>Delete</th>
                     </tr>
                 </thead>
@@ -55,9 +65,9 @@ const AllUser = () => {
                                 <td>
                                     <div className="text-sm">{user.email}</div>
                                 </td>
-                                <td className='border'>{user?.userType ?user.role    || user.userType : user.role}</td>
-                               
-                                <td><button onClick={()=>handleDeleteUser(user._id)} className='btn btn-xs btn-secondary '>Delete</button></td>
+                                <td className='border'>{user?.userType ? user.role || user.userType : user.role}</td>
+
+                                <td><button onClick={() => handleDeleteUser(user._id)} className='btn btn-xs btn-secondary '>Delete</button></td>
                             </tr>)
                     }
                 </tbody>

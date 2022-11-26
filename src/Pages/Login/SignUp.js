@@ -98,14 +98,7 @@ const SignUp = () => {
                         {errors.name &&
                             <p className='text-red-600' >{errors.name?.message}</p>}
                     </div>
-                    {/* <div className="form-control w-full max-w-xs">
-                        <label className="label">
-                            <span className="label-text">Your Photo</span>
-                        </label>
-                        <input type="text" {...register("img", { required: "Please upload Your Photo" })} className="input input-bordered w-full max-w-xs" />
-                        {errors.img &&
-                            <p className='text-red-600' >{errors.img?.message}</p>}
-                    </div> */}
+                    
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
                             <span className="label-text">Your Photo</span>
@@ -141,7 +134,7 @@ const SignUp = () => {
                             <span className="label-text">What do You want Buyer Or Seller ?</span>
                         </label>
                         <select defaultValue={'Buyer'} type="userOption" {...register("userOption", { required: "Require" })} className="select select-bordered w-full max-w-xs" >
-                            <option value='Buyer' disabled >Buyer</option>
+                            <option value='Buyer' >Buyer</option>
                             <option>Seller</option>
                         </select>
 

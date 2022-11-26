@@ -23,7 +23,7 @@ const Products = () => {
         })
         .then(res => res.json)
                 .then(data => {
-                    toast.error("Delete successfully")
+                    toast.success("Delete successfully")
                     refetch()
                 })
         }

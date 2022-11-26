@@ -1,11 +1,13 @@
 .banner img{
-  height: 600px;
+  
 }
 .category-card img{
   height: 264px;
   width: 384px;
 }
-
+.card-banner img{
+  height: 300px;
+}
 .images img{
   height: 400px;
   width: 400px;

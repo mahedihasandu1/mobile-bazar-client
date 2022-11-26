@@ -12,7 +12,7 @@ const AddProduct = () => {
     const navigate = useNavigate()
 
 
-    const { data: categories = [],refetch,isLoading } = useQuery({
+    const { data: categories = [], refetch, isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/category`)
@@ -23,8 +23,8 @@ const AddProduct = () => {
 
     const handleAddProduct = (data) => {
 
-        console.log(data);
-        const time=new Date().toLocaleDateString()
+        
+        const time = new Date().toLocaleDateString()
         const image = data.productImg[0];
         const formData = new FormData();
         formData.append('image', image);
@@ -37,44 +37,45 @@ const AddProduct = () => {
                 // console.log(imgData)
                 if (imgData.success) {
                     const product = {
-                        name:user.displayName,
+                        name: user.displayName,
                         email: user?.email,
-                        seller:user?.photoURL,
+                        seller: user?.photoURL,
                         image: imgData.data.url,
                         model: data.productModel,
                         categoryId: data.category,
-                        phone:data.phone,
-                        location:data.address,
-                        buy:parseFloat(data.buyPrice),
-                        sell:parseFloat(data.sellPrice),
-                        useYear:data.useYear,
+                        phone: data.phone,
+                         condition: data.condition,
+                        location: data.address,
+                        buy: parseFloat(data.buyPrice),
+                        sell: parseFloat(data.sellPrice),
+                        useYear: data.useYear,
                         time
                     }
                     fetch(`http://localhost:5000/products`, {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
-                            authorization:`bearer ${localStorage.getItem('accessToken')}`
+                            authorization: `bearer ${localStorage.getItem('accessToken')}`
                         },
                         body: JSON.stringify(product)
                     }).then(res => res.json())
                         .then(result => {
                             if (result.acknowledged) {
-                                toast.success('Product Add Successfully' )
+                                toast.success('Product Add Successfully')
                                 navigate('/dashboard/user/products')
-                                
+
                             }
                         })
                 }
             })
 
     }
-   
+
     return (
         <div className=' shadow-lg p-2  md:mx-auto mt-20'>
             <div className=' p-5 shadow-lg rounded-lg' >
                 <h1 className='text-xl text-center'>Add A Product </h1>
-                <form className='grid sm:grid-cols-1 md:grid-cols-2 mx-auto' onSubmit={handleSubmit(handleAddProduct)}>
+                <form className='grid sm:grid-cols-2 md:grid-cols-2' onSubmit={handleSubmit(handleAddProduct)}>
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
                             <span className="label-text">Name</span>
@@ -114,9 +115,9 @@ const AddProduct = () => {
                         <select defaultValue={'Apple'} {...register("category", { required: "Please Select Category" })} className="select select-accent w-full max-w-xs">
 
                             {
-                                categories.map(category => <option defaultValue={category._id}  key={category._id}  value={category._id}>{category.category}</option>)
+                                categories.map(category => <option defaultValue={category._id} key={category._id} value={category._id}>{category.category}</option>)
                             }
-                            
+
                         </select>
                         {errors.category &&
                             <p className='text-red-600' >{errors.category?.message}</p>}
@@ -125,10 +126,11 @@ const AddProduct = () => {
                         <label className="label">
                             <span className="label-text">Phone Number</span>
                         </label>
-                        <input type="text" {...register("phone", { required:"Your Phone Number" })} className="input input-bordered w-full max-w-xs" />
+                        <input type="text" {...register("phone", { required: "Your Phone Number" })} className="input input-bordered w-full max-w-xs" />
                         {errors.phone &&
                             <p className='text-red-600' >{errors.phone?.message}</p>}
                     </div>
+
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
                             <span className="label-text">Location</span>
@@ -145,7 +147,7 @@ const AddProduct = () => {
                         {errors.buyPrice &&
                             <p className='text-red-600' >{errors.buyPrice?.message}</p>}
                     </div>
-                   
+
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
                             <span className="label-text">Selling Price</span>
@@ -154,6 +156,7 @@ const AddProduct = () => {
                         {errors.sellPrice &&
                             <p className='text-red-600' >{errors.sellPrice?.message}</p>}
                     </div>
+
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
                             <span className="label-text">Year Of Use</span>
@@ -162,11 +165,27 @@ const AddProduct = () => {
                         {errors.useYear &&
                             <p className='text-red-600' >{errors.useYear?.message}</p>}
                     </div>
-                     <div className='flex justify-center items-center'>
-                     <input  className='btn btn-accent w-full my-2' value={"Add Product"} type="submit" />
-                     </div>
+
+                    <div className="form-control w-full max-w-xs ">
+                        <label className="label">
+                            <span className="label-text">Device Condition</span>
+                        </label>
+                        <select defaultValue={'Fresh Condition'} {...register("condition", { required: "Please Select Condition" })} className="select select-accent w-full max-w-xs">
+                            <option  value={'Fresh Condition'} selected> Fresh Condition</option>
+                            <option  value={'Good Condition'}> Good Condition</option>
+                            <option value={'Bad Condition'}> Bad Condition</option>
+                        </select>
+                        {errors.condition &&
+                            <p className='text-red-600' >{errors.condition?.message}</p>}
+                    </div>
+                    <div className='flex justify-center items-center'>
+                       {
+                        user?.email ? <input className='btn btn-accent w-[60%] mx-auto my-2 -ml-0' value={"Add Product"} type="submit" />:
+                         <input disabled className='btn btn-accent w-[60%] mx-auto my-2 -ml-0' value={"Add Product"} type="submit" />
+                       }
+                    </div>
                 </form>
-               
+
             </div>
         </div>
     );
