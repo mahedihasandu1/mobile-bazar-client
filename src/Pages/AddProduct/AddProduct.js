@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import Loading from '../Loading/Loading';
 
 
 const AddProduct = () => {
@@ -22,8 +23,6 @@ const AddProduct = () => {
     });
 
     const handleAddProduct = (data) => {
-
-        
         const time = new Date().toLocaleDateString()
         const image = data.productImg[0];
         const formData = new FormData();
@@ -63,7 +62,7 @@ const AddProduct = () => {
                             if (result.acknowledged) {
                                 toast.success('Product Add Successfully')
                                 navigate('/dashboard/user/products')
-
+                                refetch()
                             }
                         })
                 }
@@ -71,6 +70,9 @@ const AddProduct = () => {
 
     }
 
+    if(isLoading){
+        return <Loading></Loading>
+    }
     return (
         <div className=' shadow-lg p-2  md:mx-auto mt-20'>
             <div className=' p-5 shadow-lg rounded-lg' >

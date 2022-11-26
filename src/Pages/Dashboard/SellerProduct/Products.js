@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
+import Loading from '../../Loading/Loading';
 
 const Products = () => {
 
 
-    const { data: products = [],refetch } = useQuery({
+    const { data: products = [],refetch,isLoading } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/products')
@@ -30,7 +31,9 @@ const Products = () => {
 
     }
 
-
+    if(isLoading){
+        return <Loading></Loading>
+    }
     return (
         <div className="overflow-x-auto w-full">
             <table className="table w-full">

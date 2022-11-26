@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import Loading from '../../Loading/Loading';
 
 const Category = () => {
-    const { data: categories = [] } = useQuery({
+    const { data: categories = [],isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/category')
@@ -12,7 +13,9 @@ const Category = () => {
         }
     })
    
-  
+    if(isLoading){
+        return <Loading></Loading>
+    }
     return (
         <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-10'>
             {

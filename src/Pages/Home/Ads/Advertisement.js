@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import Loading from '../../Loading/Loading';
 
 const Advertisement = () => {
-    const { data: adds = [] } = useQuery({
+    const { data: adds = [],isLoading } = useQuery({
         queryKey: ['adds'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/adsProducts')
@@ -10,6 +11,9 @@ const Advertisement = () => {
             return data;
         }
     })
+    if(isLoading){
+        return <Loading></Loading>
+    }
     return (
         <div className='my-10'> 
             <h2 className='text-center text-3xl font-semibold my-5 text-lime-700'>Advertisement </h2>

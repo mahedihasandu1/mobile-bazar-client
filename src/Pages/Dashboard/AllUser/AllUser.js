@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
+import Loading from '../../Loading/Loading';
 
 const AllUser = () => {
-    const { data: users = [] ,refetch} = useQuery({
+    const { data: users = [] ,refetch,isLoading} = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/users?userType=Buyer')
@@ -23,6 +24,9 @@ const AllUser = () => {
                     refetch()
                 })
        
+    }
+    if(isLoading){
+        return <Loading></Loading>
     }
     return (
         <div className="overflow-x-auto w-full">

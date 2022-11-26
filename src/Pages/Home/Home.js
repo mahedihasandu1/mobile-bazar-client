@@ -10,8 +10,9 @@ const Home = () => {
             <SideImgBanner></SideImgBanner>
             <Advertisement></Advertisement>
             <Carusel></Carusel>
+             <h1 className='text-center font-bold text-3xl my-16 italic text-orange-600'>Available Product category</h1>
             <Category></Category>
-            <h1>this is home</h1>
+
         </div>
     );
 };
