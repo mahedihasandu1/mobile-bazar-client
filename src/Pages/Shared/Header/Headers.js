@@ -1,20 +1,20 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import icon from '../../../assets/drawer.svg'
 import { UserIcon } from '@heroicons/react/24/solid'
 const Headers = () => {
-    const navigate=useNavigate()
 
+    
     const { user ,logOut} = useContext(AuthContext)
 
 
     const handleLogout = () => {
         logOut()
         .then(()=>{
-            toast.info('Logout Successful')
-            navigate('/')
+        <Navigate to='/' />
+            toast.info('Logout Successful') 
         })
         .then(error=>console.log(error))
     }

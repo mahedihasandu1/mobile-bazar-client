@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { CheckBadgeIcon } from '@heroicons/react/24/solid'
+import { AuthContext } from '../Context/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const AllProducts = ({ product, setProductData }) => {
-    ;
+    const {user}=useContext(AuthContext)
 
     return (
         <div className="card lg:card-side h-full bg-gray-100 shadow-xl">
@@ -27,7 +29,14 @@ const AllProducts = ({ product, setProductData }) => {
                 <p>Post Date: {product.time}</p>
                 <p className='text-sm font-bold opacity-50'>Years of used: {product.useYear}</p>
                 <div className="card-actions items-end justify-end">
-                    <label onClick={()=> setProductData(product)} className="btn btn-primary" htmlFor="product-booking" >Book Now</label>
+
+{
+    user?.uid ?<>  <label onClick={()=> setProductData(product)} className="btn btn-primary" htmlFor="product-booking" >Book Now</label></>:<> <Link className='btn-primary btn' to='/login'> Book Now</Link> </>
+}
+
+                   
+
+
                 </div>
             </div>
         </div>
