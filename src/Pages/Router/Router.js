@@ -15,6 +15,7 @@ import Home from "../Home/Home";
 import Main from "../Layout/Main";
 import Login from "../Login/Login";
 import SignUp from "../Login/SignUp";
+import PrivateRoute from "./PrivateRoute";
 
 
 export const { createBrowserRouter } = require("react-router-dom");
@@ -28,7 +29,7 @@ export const router=createBrowserRouter([
         {path:'/signup',element:<SignUp></SignUp>},
         {path:'/blog',element:<Blog></Blog>},
     ]},
-    {path:'/dashboard',errorElement:<ErrorPage></ErrorPage>,element:<DashboardLayout></DashboardLayout>,children:[
+    {path:'/dashboard',errorElement:<ErrorPage></ErrorPage>,element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,children:[
         {path:'/dashboard',element:<Dashboard></Dashboard>},
         {path:'/dashboard/addProduct',element:<AddProduct></AddProduct>},
         {path:'/dashboard/addProduct',element:<AddProduct></AddProduct>},

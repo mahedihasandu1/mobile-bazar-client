@@ -20,7 +20,6 @@ const Products = () => {
         if(proceed){
             fetch(`http://localhost:5000/products/${id}`,{
             method:'DELETE',
-
         })
         .then(res => res.json())
                 .then(data => {
@@ -29,7 +28,7 @@ const Products = () => {
                    fetch(`http://localhost:5000/adsProducts?id=${id}`,{
                     method:'DELETE',
                     headers:{
-                            
+                        authorization: `bearer ${localStorage.getItem('accessToken')}` 
                     }
                    }).then(res=>res.json())
                    .then(()=>{})
