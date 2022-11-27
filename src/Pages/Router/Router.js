@@ -7,6 +7,7 @@ import AllUser from "../Dashboard/AllUser/AllUser";
 import Dashboard from "../Dashboard/Dashboard";
 import DashboardLayout from "../Dashboard/DashboardLayout";
 import MyOrders from "../Dashboard/MyOrders/MyOrders";
+import ReportedItems from "../Dashboard/ReportedItem/ReportedItems";
 import MyProduct from "../Dashboard/SellerProduct/MyProduct";
 import Products from "../Dashboard/SellerProduct/Products";
 import ErrorPage from "../ErrorPage/ErrorPage";
@@ -40,5 +41,6 @@ export const router=createBrowserRouter([
         {path:'/dashboard/user/seller',element:<AdminRoute><AllSeller></AllSeller></AdminRoute>},
         {path:'/dashboard/user/products',element:<SellerRoute><MyProduct></MyProduct></SellerRoute>},
         {path:'/dashboard/products',element:<AdminRoute><Products></Products></AdminRoute>},
+        {path:'/dashboard/reportedItem',element:<AdminRoute><ReportedItems></ReportedItems></AdminRoute>},
     ]}
 ])

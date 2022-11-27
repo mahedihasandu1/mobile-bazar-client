@@ -4,14 +4,16 @@ import { useLoaderData } from 'react-router-dom';
 import Loading from '../Pages/Loading/Loading';
 import AllProducts from './AllProducts';
 import BookingModal from './BookingModal/BookingModal';
+import ReportModal from './BookingModal/ReportModal';
 
 const AllProductContainer = () => {
-    const [productData,setProductData]=useState(null)
+    const [productData, setProductData] = useState(null)
+    const [reportItem, setReportItem] = useState(null)
     const singleData = useLoaderData();
     const { _id } = singleData;
     console.log(_id);
 
-    const { data: products = [], isLoading,refetch } = useQuery({
+    const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/products/?id=${_id}`)
@@ -26,28 +28,39 @@ const AllProductContainer = () => {
     return (
         <section>
             <div>
-            <div className='mb-10 md:w-[80%] mx-auto'>
-            <h2 className='text-center font-bold mb-10 '>Available Secondhand Device </h2>
-            <div className='grid grid-cols-1 gap-5' ></div>
-            {
-                products.map(product=><AllProducts key={product._id} 
-                product={product}
-                setProductData={setProductData}
-                ></AllProducts>)
-            }
+                <div className='mb-10 md:w-[80%] mx-auto'>
+                    <h2 className='text-center text-2xl font-bold my-10 '>Available Device </h2>
+                    <div className='grid grid-cols-1  gap-10' >
+                        {
+                            products.map(product => <AllProducts key={product._id}
+                                product={product}
+                                setProductData={setProductData}
+                                setReportItem={setReportItem}
+                            ></AllProducts>)
+                        }
+                    </div>
+                </div>
             </div>
-        </div>
-        {
-                productData && 
+            {
+                productData &&
                 <BookingModal
-                productData={productData}
-                setProductData={setProductData}
-                refetch={refetch}
+                    productData={productData}
+                    setProductData={setProductData}
+                    refetch={refetch}
                 >
                 </BookingModal>
+            },
+            {
+                reportItem &&
+                <ReportModal
+                reportItem={reportItem}
+                setReportItem={ setReportItem}
+                >
+                </ReportModal>
             }
+
         </section>
-        
+
     );
 };
 

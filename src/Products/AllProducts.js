@@ -3,8 +3,8 @@ import { CheckBadgeIcon } from '@heroicons/react/24/solid'
 import { AuthContext } from '../Context/AuthProvider';
 import { Link } from 'react-router-dom';
 
-const AllProducts = ({ product, setProductData }) => {
-    const {user}=useContext(AuthContext)
+const AllProducts = ({ product, setProductData,setReportItem }) => {
+    const { user } = useContext(AuthContext)
 
     return (
         <div className="card lg:card-side h-full bg-gray-100 shadow-xl">
@@ -17,9 +17,9 @@ const AllProducts = ({ product, setProductData }) => {
                         <img alt='' src={product?.seller} />
                     </div>
                     <p className='ml-5 text-xl font-semibold '>{product?.name}  {
-                        product.status==='verify'  ? <CheckBadgeIcon className='w-6 text-blue-600'/> : <p>Not Verify</p>
+                        product.status === 'verify' ? <CheckBadgeIcon className='w-6 text-blue-600' /> : <p>Not Verify</p>
                     }</p>
-        
+
                 </div>
                 <div>
                 </div>
@@ -29,14 +29,13 @@ const AllProducts = ({ product, setProductData }) => {
                 <p>Post Date: {product.time}</p>
                 <p className='text-sm font-bold opacity-50'>Years of used: {product.useYear}</p>
                 <div className="card-actions items-end justify-end">
-
-{
-    user?.uid ?<>  <label onClick={()=> setProductData(product)} className="btn btn-primary" htmlFor="product-booking" >Book Now</label></>:<> <Link className='btn-primary btn' to='/login'> Book Now</Link> </>
-}
-
-                   
-
-
+                    {
+                         user?.uid ?
+                        <label onClick={()=>setReportItem(product)} htmlFor="reported-modal" className="btn btn-error">Reported Item</label>:<> <Link className='btn-error btn' to='/login'> Report admin</Link> </>
+                    }
+                    {
+                        user?.uid ? <>  <label onClick={() => setProductData(product)} className="btn btn-primary" htmlFor="product-booking" >Book Now</label></> : <> <Link className='btn-primary btn' to='/login'> Book Now</Link> </>
+                    }
                 </div>
             </div>
         </div>

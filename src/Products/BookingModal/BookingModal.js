@@ -5,7 +5,7 @@ import { AuthContext } from '../../Context/AuthProvider';
 
 const BookingModal = ({ productData }) => {
     const { user } = useContext(AuthContext)
-    const { model, sell, _id, name,image,  } = productData;
+    const { model, sell, _id, name,image} = productData;
     const navigate=useNavigate()
 
     const handleSubmit = (e) => {
@@ -29,7 +29,8 @@ const BookingModal = ({ productData }) => {
         fetch('http://localhost:5000/bookedProduct', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization:`bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(bookingData)
         }).then(res => res.json())
