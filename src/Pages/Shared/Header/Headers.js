@@ -25,14 +25,11 @@ const Headers = () => {
         {
             user?.uid ?
                 <>
-                  
-                    <li><Link title='My Wishlist' to='/wishlist'>My Wishlist</Link></li>
                     <li><Link title='Dashboard' to='/dashboard'>Dashboard</Link></li>
                   
                 </> :
                 <>
                     <li><Link title='Login' to='/login'>Login</Link></li>
-                   
                 </>
         }
 

@@ -5,7 +5,6 @@ import Loading from '../../Loading/Loading';
 
 const Products = () => {
 
-
     const { data: products = [],refetch,isLoading } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
@@ -49,7 +48,7 @@ const Products = () => {
                         <th>
                         </th>
                         <th>Device Info</th>
-                        <th>seller</th>
+                        <th>Seller</th>
                         <th>Delete</th>
                     </tr>
                 </thead>

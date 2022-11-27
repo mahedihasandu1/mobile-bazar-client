@@ -15,7 +15,9 @@ import Home from "../Home/Home";
 import Main from "../Layout/Main";
 import Login from "../Login/Login";
 import SignUp from "../Login/SignUp";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
+import SellerRoute from "./SellerRoute";
 
 
 export const { createBrowserRouter } = require("react-router-dom");
@@ -34,9 +36,9 @@ export const router=createBrowserRouter([
         {path:'/dashboard/addProduct',element:<AddProduct></AddProduct>},
         {path:'/dashboard/addProduct',element:<AddProduct></AddProduct>},
         {path:'/dashboard/orders',element:<MyOrders></MyOrders>},
-        {path:'/dashboard/user',element:<AllUser></AllUser>},
-        {path:'/dashboard/user/seller',element:<AllSeller></AllSeller>},
-        {path:'/dashboard/user/products',element:<MyProduct></MyProduct>},
-        {path:'/dashboard/products',element:<Products></Products>},
+        {path:'/dashboard/user',element:<AdminRoute><AllUser></AllUser></AdminRoute>},
+        {path:'/dashboard/user/seller',element:<AdminRoute><AllSeller></AllSeller></AdminRoute>},
+        {path:'/dashboard/user/products',element:<SellerRoute><MyProduct></MyProduct></SellerRoute>},
+        {path:'/dashboard/products',element:<AdminRoute><Products></Products></AdminRoute>},
     ]}
 ])
