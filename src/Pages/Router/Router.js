@@ -7,6 +7,7 @@ import AllUser from "../Dashboard/AllUser/AllUser";
 import Dashboard from "../Dashboard/Dashboard";
 import DashboardLayout from "../Dashboard/DashboardLayout";
 import MyOrders from "../Dashboard/MyOrders/MyOrders";
+import Payment from "../Dashboard/Payment/Payment";
 import ReportedItems from "../Dashboard/ReportedItem/ReportedItems";
 import MyProduct from "../Dashboard/SellerProduct/MyProduct";
 import Products from "../Dashboard/SellerProduct/Products";
@@ -42,5 +43,8 @@ export const router=createBrowserRouter([
         {path:'/dashboard/user/products',element:<SellerRoute><MyProduct></MyProduct></SellerRoute>},
         {path:'/dashboard/products',element:<AdminRoute><Products></Products></AdminRoute>},
         {path:'/dashboard/reportedItem',element:<AdminRoute><ReportedItems></ReportedItems></AdminRoute>},
+        {path:'/dashboard/payment/:id',element:<PrivateRoute><Payment></Payment></PrivateRoute>,
+        loader:({params})=>fetch(`http://localhost:5000/bookedProduct/${params.id}`)
+    },
     ]}
 ])

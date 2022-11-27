@@ -57,7 +57,7 @@ const BookingModal = ({ productData }) => {
                         <input disabled name='name' type="text" readOnly placeholder="Your Name" defaultValue={user.displayName} className="input input-bordered input-secondary  w-full" />
                         <input disabled name='email' type="email" readOnly placeholder="Type Email" defaultValue={user.email} className="input input-bordered input-secondary w-full" />
                         <input disabled name='price' type="text" readOnly placeholder="Product Price" defaultValue={sell} className="input input-bordered input-secondary w-full" />
-                        <input name='location' type="text" placeholder="Matting Location" required className="input input-bordered input-secondary w-full" />
+                        <input name='location' type="text" placeholder="Meting Location" required className="input input-bordered input-secondary w-full" />
                         <input name='phone' type="text" placeholder='Your Phone Number' className="input input-bordered input-secondary w-full " required />
                         <input required type="submit" value="Submit" className='w-full btn btn-primary' />
                     </form>

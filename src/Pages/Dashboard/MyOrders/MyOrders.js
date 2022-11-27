@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import Loading from '../../Loading/Loading';
 
@@ -18,21 +19,21 @@ const MyOrders = () => {
 
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you Confirm Delete This Product')
-        if(proceed){
-             fetch(`http://localhost:5000/bookedProduct?id=${id}`, {
-            method: 'DELETE',
-            headers:{
-                authorization: `bearer ${localStorage.getItem('accessToken')}`
-            }
-        }).then(res => res.json())
-            .then(data => {
-                if (data.deletedCount > 0) {
-                    toast.success("Delete successfully")
-                    refetch()
+        if (proceed) {
+            fetch(`http://localhost:5000/bookedProduct?id=${id}`, {
+                method: 'DELETE',
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
-            })
+            }).then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        toast.success("Delete successfully")
+                        refetch()
+                    }
+                })
         }
-       
+
     }
 
     if (isLoading) {
@@ -77,8 +78,8 @@ const MyOrders = () => {
                                 </td>
                                 <td>
 
-                                    <p className='text-sm text-cyan-800 font-semibold opacity-75'> sell Price: {product.sell}</p>
-                                    <p className='text-xm font-bold'>Selling  Address : {product.location}</p>
+                                    <p className='text-xm font-bold text-cyan-800 font-semibold opacity-75'> Sell Price: {product.sell}</p>
+                                    <p className='text-xm font-bold'>My Location : {product.userLocation}</p>
 
 
                                 </td>
@@ -86,7 +87,12 @@ const MyOrders = () => {
                                     <button onClick={() => handleDelete(product._id)} className='btn btn-xs btn-secondary '>Delete</button>
                                 </td>
                                 <th>
-                                    <button onClick={() => (product)} className='btn-xs btn btn-success'>TO Pay</button>
+                                    {
+                                        product.paid ===true ?product.sell && product.paid && <span className=' font-bol p-3 bg-error rounded-xl text-white'>Paid</span>: <Link to={`/dashboard/payment/${product._id}`}> <button onClick={() => (product)} className='btn-xs btn btn-success'>TO Pay</button></Link>
+                                    }
+
+                              
+                                  
                                 </th>
 
                             </tr>)

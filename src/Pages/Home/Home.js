@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../Context/AuthProvider';
+import Loading from '../Loading/Loading';
 import Advertisement from './Ads/Advertisement';
 import Carusel from './Carusel';
 import Category from './Category/Category';
 import SideImgBanner from './SideImgBanner';
 
 const Home = () => {
+    const {loading}=useContext(AuthContext)
+    if(loading){
+        return <Loading></Loading>
+    }
     return (
         <div>
             <SideImgBanner></SideImgBanner>
