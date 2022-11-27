@@ -17,12 +17,13 @@ const MyOrders = () => {
     })
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/bookedProduct?id=${id}`, {
+        const proceed = window.confirm('Are you Confirm Delete This Product')
+        if(proceed){
+             fetch(`http://localhost:5000/bookedProduct?id=${id}`, {
             method: 'DELETE',
             headers:{
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
-
         }).then(res => res.json())
             .then(data => {
                 if (data.deletedCount > 0) {
@@ -30,6 +31,8 @@ const MyOrders = () => {
                     refetch()
                 }
             })
+        }
+       
     }
 
     if (isLoading) {

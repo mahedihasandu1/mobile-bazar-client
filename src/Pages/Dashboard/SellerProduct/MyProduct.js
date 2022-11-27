@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import {  useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import Loading from '../../Loading/Loading';
 
 const MyProduct = () => {
+    const navigate=useNavigate()
     const { user } = useContext(AuthContext)
     console.log(user.email);
     const { data: products = [], refetch, isLoading } = useQuery({
@@ -45,6 +47,8 @@ const MyProduct = () => {
             console.log(data)
             if (data.acknowledged === true) {
                 toast.success('Advertisement Set Successful')
+               navigate('/')
+
                 refetch()
             }
             else{
@@ -72,9 +76,11 @@ const MyProduct = () => {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
                    }).then(res=>res.json())
-                   .then(()=>{})      
-                      }
+                   .then(()=>{
                     refetch()
+                   })      
+                      }
+  
                 })
         }
     }

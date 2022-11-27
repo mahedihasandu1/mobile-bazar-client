@@ -13,7 +13,9 @@ const AllSeller = () => {
         }
     })
     const handleDeleteUser = (id) => {
-        fetch(`http://localhost:5000/users/${id}`, {
+        const proceed = window.confirm('Are you Confirm Delete This User')
+        if(proceed){
+             fetch(`http://localhost:5000/users/${id}`, {
             method: 'DELETE',
             headers:{
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -27,10 +29,14 @@ const AllSeller = () => {
                   }
                   refetch()
             })
+        }
+       
    
 }
     const handleVerifySeller = id => {
-        fetch(`http://localhost:5000/users/${id}`, {
+        const proceed = window.confirm('Are Want To Verify This Seller')
+        if(proceed){
+             fetch(`http://localhost:5000/users/${id}`, {
             method: 'PUT',
             headers:{
                 authorization:`bearer ${localStorage.getItem('accessToken')}`
@@ -44,6 +50,8 @@ const AllSeller = () => {
                 }
                
             })
+        }
+       
 
     }
     if(isLoading){
