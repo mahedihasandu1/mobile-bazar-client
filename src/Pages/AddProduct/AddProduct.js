@@ -12,6 +12,17 @@ const AddProduct = () => {
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
 
+    const {data: users = {},  } = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/user?email=${user?.email}`)
+            const data = res.json()
+            return data
+        }
+    });
+
+
+
 
     const { data: categories = [], refetch, isLoading } = useQuery({
         queryKey: ['categories'],
@@ -48,7 +59,8 @@ const AddProduct = () => {
                         buy: parseFloat(data.buyPrice),
                         sell: parseFloat(data.sellPrice),
                         useYear: data.useYear,
-                        time
+                      time,
+                      status:users.status
                     }
                     fetch(`http://localhost:5000/products`, {
                         method: 'POST',

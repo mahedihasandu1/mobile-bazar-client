@@ -17,15 +17,16 @@ const AllSeller = () => {
             method: 'DELETE',
 
         })
-            .then(res => res.json)
+            .then(res => res.json())
             .then(data => {
-                toast.success("Delete successfully")
-                refetch()
+                if(data.deletedCount >0){
+                    toast.success("Delete successfully")  
+                  }
+                  refetch()
             })
    
 }
     const handleVerifySeller = id => {
-
         fetch(`http://localhost:5000/users/${id}`, {
             method: 'PUT',
             headers:{
@@ -35,9 +36,10 @@ const AllSeller = () => {
         }).then(res => res.json())
             .then(data => {
                 if (data.modifiedCount>0) {
-                    toast.success('Make Admin Successful')
+                    toast.success('Verify Admin Successful')
                     refetch()
                 }
+               
             })
 
     }

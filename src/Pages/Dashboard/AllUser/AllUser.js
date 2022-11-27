@@ -18,9 +18,12 @@ const AllUser = () => {
                 method: 'DELETE',
 
             })
-                .then(res => res.json)
+                .then(res => res.json())
                 .then(data => {
-                    toast.success("Delete successfully")
+                    if(data.deletedCount >0){
+                        toast.success("Delete successfully")  
+                      }
+                    
                     refetch()
                 })
        

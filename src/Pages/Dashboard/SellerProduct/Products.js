@@ -22,12 +22,19 @@ const Products = () => {
             method:'DELETE',
 
         })
-        .then(res => res.json)
+        .then(res => res.json())
                 .then(data => {
+                    console.log(data)
                     toast.success("Delete successfully")
-                    refetch()
+                   fetch(`http://localhost:5000/adsProducts?id=${id}`,{
+                    method:'DELETE',
+                    headers:{
+                            
+                    }
+                   }).then(res=>res.json())
+                   .then(()=>{})
                 })
-        }
+        } refetch()
 
     }
 
@@ -59,8 +66,8 @@ const Products = () => {
                                 </th>
                                 <td>
                                     <div className="flex items-center space-x-3">
-                                        <div className="avatar">
-                                            <div className="mask mask-squircle w-10 h-10">
+                                        <div className="avatar rounded  w-20">
+                                            <div className="mask">
                                                 <img src={product.image} alt="Avatar Tailwind CSS Component" />
                                             </div>
                                         </div>

@@ -1,8 +1,8 @@
 import React from 'react';
-
+import { CheckBadgeIcon } from '@heroicons/react/24/solid'
 
 const AllProducts = ({ product, setProductData }) => {
-    console.log(product);
+    ;
 
     return (
         <div className="card lg:card-side h-full bg-gray-100 shadow-xl">
@@ -11,10 +11,13 @@ const AllProducts = ({ product, setProductData }) => {
                 <span className='-mb-5   text-fuchsia-800 text-md font-semibold'><p>Device Model </p></span>
                 <h2 className="card-title my-3">{product.model}</h2>
                 <div className="avatar">
-                    <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                    <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                         <img alt='' src={product?.seller} />
                     </div>
-                    <p className='ml-5 text-xl font-semibold'>{product?.name}</p>
+                    <p className='ml-5 text-xl font-semibold '>{product?.name}  {
+                        product.status==='verify'  ? <CheckBadgeIcon className='w-6 text-blue-600'/> : <p>Not Verify</p>
+                    }</p>
+        
                 </div>
                 <div>
                 </div>

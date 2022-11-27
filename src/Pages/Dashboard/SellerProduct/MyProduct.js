@@ -62,9 +62,18 @@ const MyProduct = () => {
                 method: 'DELETE',
 
             })
-                .then(res => res.json)
+                .then(res => res.json())
                 .then(data => {
-                    toast.success("Delete successfully")
+                    if(data.deletedCount >0){
+                        toast.success("Delete successfully") 
+                        fetch(`http://localhost:5000/adsProducts?id=${id}`,{
+                    method:'DELETE',
+                    headers:{
+                            
+                    }
+                   }).then(res=>res.json())
+                   .then(()=>{})      
+                      }
                     refetch()
                 })
         }

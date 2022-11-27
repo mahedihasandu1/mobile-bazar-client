@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import icon from '../../../assets/drawer.svg'
-import { FaUser} from 'react-icons/fa';
+import { UserIcon } from '@heroicons/react/24/solid'
 const Headers = () => {
     const navigate=useNavigate()
 
@@ -66,7 +66,7 @@ const Headers = () => {
                         <div className="w-10 rounded-full">
                             {
                                 user?.email ?<img alt='' src={user?.photoURL} /> : <>
-                                <span> <FaUser className='text-4xl text-center' /></span>
+                                <span className='disabled:'> <UserIcon /></span>
                                
                                 </>
                             }
