@@ -7,7 +7,15 @@ admin email: admin1@gmail.com
 admin pass: Admin1
 
 This is second hand Market place for mobile Device,
-1. My website has Four navbar header  
+1. My website has Five navbar header  {home,blog,dashboard,logout,login} ;
+
+2. Home page has 3 section  Best Second Hand Mobile Bazar
+For 2022 banner ,Advertisement section ,Available Product category,
+
+3. when user user click show available device then the user show all device on this category;
+4. this web site set also payment method is stripe js;
+5 . this web site has admin route and admin authentication ;
+no one can write any data with out permeation;
 
 
 
