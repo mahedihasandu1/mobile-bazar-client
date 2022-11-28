@@ -24,7 +24,6 @@ const BookingModal = ({ productData }) => {
             user:user.displayName,
             userEmail:user.email,
             sell
-
         }
         fetch('http://localhost:5000/bookedProduct', {
             method: 'POST',

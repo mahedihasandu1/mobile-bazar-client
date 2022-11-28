@@ -1,7 +1,9 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
-const CheckOutForm = ({data}) => {
+const CheckOutForm = ({ data }) => {
     const [cardError, setCardError] = useState('')
     const [success, setSuccess] = useState('')
     const [transaction, setTransaction] = useState('')
@@ -9,21 +11,22 @@ const CheckOutForm = ({data}) => {
     const [clientSecret, setClientSecret] = useState("");
     const stripe = useStripe();
     const elements = useElements();
-    const {sell,userEmail,user,_id}=data;
-
+    const { sell, userEmail, user, _id, productId } = data;
+    const navigate = useNavigate()
+    console.log(data);
     useEffect(() => {
         fetch("http://localhost:5000/create-payment-intent", {
-          method: "POST",
-          headers: { 
-            "Content-Type": "application/json",
-            authorization:`bearer ${localStorage.getItem('accessToken')}`
-        
-        },
-          body: JSON.stringify({sell}),
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+
+            },
+            body: JSON.stringify({ sell }),
         })
-          .then((res) => res.json())
-          .then((data) => setClientSecret(data.clientSecret));
-      }, [sell]);
+            .then((res) => res.json())
+            .then((data) => setClientSecret(data.clientSecret));
+    }, [sell]);
 
 
     const handleSubmit = async (e) => {
@@ -49,50 +52,72 @@ const CheckOutForm = ({data}) => {
         }
         setSuccess('')
         setProcessing(true)
-        const {paymentIntent, error:confirmedError} = await stripe.confirmCardPayment(
+        const { paymentIntent, error: confirmedError } = await stripe.confirmCardPayment(
             clientSecret,
             {
-              payment_method: {
-                card: card,
-                billing_details: {
-                  name:user,
-                  email:userEmail,
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        name: user,
+                        email: userEmail,
+                    },
                 },
-              },
             },
-          );
-          if(confirmedError){
+        );
+        if (confirmedError) {
             setCardError(confirmedError.message)
             return
-          }
-          if(paymentIntent.status === "succeeded"){
+        }
+        if (paymentIntent.status === "succeeded") {
             setSuccess('Congratulation ! your Payment Successful')
-            setTransaction( paymentIntent.id)
-            console.log('card info',card);
-            const payment={
-                sell,  
+            setTransaction(paymentIntent.id)
+            console.log('card info', card);
+            const payment = {
+                sell,
                 transactionId: paymentIntent.id,
                 userEmail,
-                paymentId:_id
+                productId,
+                paymentId: _id
 
             }
-            fetch(`http://localhost:5000/payments`,{
-                method:'POST',
-                headers:{
-                    'content-type':'application/json',
-                    authorization:`bearer ${localStorage.getItem('accessToken')}`
+            fetch(`http://localhost:5000/payments`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
                 },
-                body:JSON.stringify(payment)
-            }).then(res=>res.json())
-            .then(data=>{
-                if(data.insertedId){
-                    setSuccess('Congratulation ! your Payment Successful')
-                    setTransaction( paymentIntent.id)
-                }
-                console.log(data)
-            })
-          }
-          setProcessing(false)
+                body: JSON.stringify(payment)
+            }).then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        setSuccess('Congratulation ! your Payment Successful')
+                        setTransaction(paymentIntent.id)
+                        fetch(`http://localhost:5000/products/${productId}`, {
+                            method: 'DELETE',
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.deletedCount > 0) {
+                                   
+                                    fetch(`http://localhost:5000/adsProducts?id=${productId}`, {
+                                        method: 'DELETE',
+                                        headers: {
+                                            authorization: `bearer ${localStorage.getItem('accessToken')}`
+                                        }
+                                    }).then(res => res.json())
+                                        .then(() => {
+                                          toast.success("Delete successfully")
+                                        })
+                                }
+
+                            })
+                        navigate('/dashboard/orders')
+
+                    }
+                    console.log(data)
+                })
+        }
+        setProcessing(false)
     }
     return (
         <>

@@ -27,6 +27,9 @@ const ReportedItems = () => {
                     if (data.deletedCount > 0) {
                         fetch(`http://localhost:5000/adsProducts?id=${item.productId}`, {
                             method: 'DELETE',
+                            headers: {
+                                authorization: `bearer ${localStorage.getItem('accessToken')}`
+                            }
 
                         }).then(res => res.json())
                             .then(data => {
@@ -35,6 +38,9 @@ const ReportedItems = () => {
                                 }
                         fetch(`http://localhost:5000/products/${item.productId}`, {
                             method: 'DELETE',
+                            headers: {
+                                authorization: `bearer ${localStorage.getItem('accessToken')}`
+                            }
                         })
                             .then(res => res.json())
                             .then(() => {
@@ -42,13 +48,9 @@ const ReportedItems = () => {
                                 refetch()
                             })
                             })
-
-
                     }
-
                 })
         }
-
 
     }
 
