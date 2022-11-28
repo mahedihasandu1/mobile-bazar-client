@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouteError } from 'react-router-dom';
+import { Link, useRouteError } from 'react-router-dom';
 import image from '../../assets/error.png'
 
 const ErrorPage = () => {
@@ -11,6 +11,7 @@ const ErrorPage = () => {
             <p className='text-red-600 text-center font-semibold text-4xl mt-5 '>
                 <i>{error.statusText || error.message}</i>
             </p>
+            <p className='text-center my-10 text-3xl'> <strong>Go To Home</strong> <Link className='btn-primary btn' to='/'>Home</Link></p>
             </div>
         </div>
     );
