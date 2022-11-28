@@ -35,7 +35,7 @@ const ReportModal = ({ reportItem }) => {
             body: JSON.stringify(report)
         }).then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 if (data.acknowledged === true) {
                     toast.success('Reported item Success full')
                     navigate('/')

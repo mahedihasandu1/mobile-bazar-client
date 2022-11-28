@@ -8,7 +8,7 @@ import Loading from '../../Loading/Loading';
 const MyProduct = () => {
     const navigate=useNavigate()
     const { user } = useContext(AuthContext)
-    console.log(user.email);
+    // console.log(user.email);
     const { data: products = [], refetch, isLoading } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
@@ -35,7 +35,7 @@ const MyProduct = () => {
             useYear: product.useYear,
             time: product.time
         }
-        console.log(adds);
+        // console.log(adds);
         fetch('https://mobile-bazar-server.vercel.app/adsProducts', {
             method: 'POST',
             headers: {
@@ -46,7 +46,7 @@ const MyProduct = () => {
             body: JSON.stringify(adds)
         }).then(res=>res.json())
         .then(data => {
-            console.log(data)
+            // console.log(data)
             if (data.acknowledged === true) {
                 toast.success('Advertisement Set Successful')
                navigate('/')

@@ -10,7 +10,6 @@ const stripePromise = loadStripe('pk_test_51M7OMfGCjySPltA0Ir2ouxCHENqrSEWMHi1E8
 
 const Payment = () => {
     const data = useLoaderData()
-    console.log(data);
     return (
         <div>
             <h2 className='text-3xl font-semibold'>Payment For {data.model}</h2>

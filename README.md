@@ -1,3 +1,49 @@
+Welcome To Mobile Bazar for secondhand mobile 2022
+live link : https://mobile-bazar-4d735.web.app
+client site Code :https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-mahedihasandu1
+Server Site Code: https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-mahedihasandu1
+
+admin email: admin1@gmail.com
+admin pass: Admin1
+
+This is second hand Market place for mobile Device,
+1. My website has Four navbar header  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

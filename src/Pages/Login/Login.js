@@ -28,7 +28,7 @@ const Login = () => {
         signIn(e.email, e.password)
             .then(result => {
                 const user = result.user;
-                console.log(user)
+                // console.log(user)
                 setLoginUserEmail(e.email)
                 navigate(from, { replace: true })
     
@@ -43,7 +43,7 @@ const Login = () => {
         googleLogin(provider)
         .then(result=>{
             const user=result.user;
-            console.log(user)
+            // console.log(user)
             navigate(from, { replace: true })
             toast.success('Login Successfully')
             

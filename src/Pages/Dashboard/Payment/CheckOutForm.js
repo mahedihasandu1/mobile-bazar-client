@@ -13,14 +13,13 @@ const CheckOutForm = ({ data }) => {
     const elements = useElements();
     const { sell, userEmail, user, _id, productId } = data;
     const navigate = useNavigate()
-    console.log(data);
+    // console.log(data);
     useEffect(() => {
         fetch("https://mobile-bazar-server.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
-
             },
             body: JSON.stringify({ sell }),
         })
@@ -36,7 +35,7 @@ const CheckOutForm = ({ data }) => {
         }
 
         const card = elements.getElement(CardElement);
-        console.log(card);
+        // console.log(card);
         if (card == null) {
             return;
         };
@@ -71,7 +70,7 @@ const CheckOutForm = ({ data }) => {
         if (paymentIntent.status === "succeeded") {
             setSuccess('Congratulation ! your Payment Successful')
             setTransaction(paymentIntent.id)
-            console.log('card info', card);
+            // console.log('card info', card);
             const payment = {
                 sell,
                 transactionId: paymentIntent.id,

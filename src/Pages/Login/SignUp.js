@@ -24,7 +24,7 @@ const SignUp = () => {
                 setSignUPError('')
                 const user = result.user
                 toast.success('User Created Successfully')
-                console.log(user)
+                // console.log(user)
             })
             .catch(error => {
                 setSignUPError(error.message)
@@ -79,7 +79,7 @@ const SignUp = () => {
             body: JSON.stringify(user)
         }).then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 navigate(from, { replace: true })
             })
     }

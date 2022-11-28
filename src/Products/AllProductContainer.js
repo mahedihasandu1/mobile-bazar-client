@@ -11,7 +11,7 @@ const AllProductContainer = () => {
     const [reportItem, setReportItem] = useState(null)
     const singleData = useLoaderData();
     const { _id } = singleData;
-    console.log(_id);
+    // console.log(_id);
 
     const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['products'],

@@ -22,7 +22,7 @@ const Products = () => {
         })
         .then(res => res.json())
                 .then(data => {
-                    console.log(data)
+                    // console.log(data)
                     refetch()
                     toast.success("Delete successfully")
                    fetch(`https://mobile-bazar-server.vercel.app/adsProducts?id=${id}`,{

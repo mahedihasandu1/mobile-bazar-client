@@ -91,8 +91,6 @@ const MyOrders = () => {
                                         product.paid ===true ?product.sell && product.paid && <span className=' font-bol p-3 bg-error rounded-xl text-white'>Paid</span>: <Link to={`/dashboard/payment/${product._id}`}> <button onClick={() => (product)} className='btn-xs btn btn-success'>TO Pay</button></Link>
                                     }
 
-                              
-                                  
                                 </th>
 
                             </tr>)
