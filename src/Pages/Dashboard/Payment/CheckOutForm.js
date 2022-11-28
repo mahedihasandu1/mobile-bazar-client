@@ -15,7 +15,7 @@ const CheckOutForm = ({ data }) => {
     const navigate = useNavigate()
     console.log(data);
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://mobile-bazar-server.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -80,7 +80,7 @@ const CheckOutForm = ({ data }) => {
                 paymentId: _id
 
             }
-            fetch(`http://localhost:5000/payments`, {
+            fetch(`https://mobile-bazar-server.vercel.app/payments`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -91,15 +91,16 @@ const CheckOutForm = ({ data }) => {
                 .then(data => {
                     if (data.insertedId) {
                         setSuccess('Congratulation ! your Payment Successful')
+                        toast.success('Congratulation ! your Payment Successful',paymentIntent.id)
                         setTransaction(paymentIntent.id)
-                        fetch(`http://localhost:5000/products/${productId}`, {
+                        fetch(`https://mobile-bazar-server.vercel.app/products/${productId}`, {
                             method: 'DELETE',
                         })
                             .then(res => res.json())
                             .then(data => {
                                 if (data.deletedCount > 0) {
                                    
-                                    fetch(`http://localhost:5000/adsProducts?id=${productId}`, {
+                                    fetch(`https://mobile-bazar-server.vercel.app/adsProducts?id=${productId}`, {
                                         method: 'DELETE',
                                         headers: {
                                             authorization: `bearer ${localStorage.getItem('accessToken')}`

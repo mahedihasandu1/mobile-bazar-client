@@ -7,7 +7,7 @@ const AllUser = () => {
     const { data: users = [], refetch, isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users?userType=Buyer')
+            const res = await fetch('https://mobile-bazar-server.vercel.app/users?userType=Buyer')
             const data = res.json();
             return data;
         }
@@ -16,7 +16,7 @@ const AllUser = () => {
     const handleDeleteUser = (id) => {
         const proceed = window.confirm('Are you Confirm Delete This User')
         if (proceed) {
-            fetch(`http://localhost:5000/users/${id}`, {
+            fetch(`https://mobile-bazar-server.vercel.app/users/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`

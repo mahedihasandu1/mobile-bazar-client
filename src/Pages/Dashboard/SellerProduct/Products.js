@@ -8,7 +8,7 @@ const Products = () => {
     const { data: products = [],refetch,isLoading } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/products')
+            const res = await fetch('https://mobile-bazar-server.vercel.app/products')
             const data = res.json()
             return data
         }
@@ -17,22 +17,24 @@ const Products = () => {
     const handleDelete=(id)=>{
         const proceed = window.confirm('Are you Confirm Delete This Product')
         if(proceed){
-            fetch(`http://localhost:5000/products/${id}`,{
+            fetch(`https://mobile-bazar-server.vercel.app/products/${id}`,{
             method:'DELETE',
         })
         .then(res => res.json())
                 .then(data => {
                     console.log(data)
+                    refetch()
                     toast.success("Delete successfully")
-                   fetch(`http://localhost:5000/adsProducts?id=${id}`,{
+                   fetch(`https://mobile-bazar-server.vercel.app/adsProducts?id=${id}`,{
                     method:'DELETE',
                     headers:{
                         authorization: `bearer ${localStorage.getItem('accessToken')}` 
                     }
                    }).then(res=>res.json())
-                   .then(()=>{})
+                   .then(()=>{
+                    refetch()})
                 })
-        } refetch()
+        } 
 
     }
 

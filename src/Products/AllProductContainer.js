@@ -16,7 +16,7 @@ const AllProductContainer = () => {
     const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/products/?id=${_id}`)
+            const res = await fetch(`https://mobile-bazar-server.vercel.app/products/?id=${_id}`)
             const data = res.json()
             return data
         }

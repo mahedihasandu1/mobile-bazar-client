@@ -6,7 +6,7 @@ const Advertisement = () => {
     const { data: adds = [],isLoading } = useQuery({
         queryKey: ['adds'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/adsProducts')
+            const res = await fetch('https://mobile-bazar-server.vercel.app/adsProducts')
             const data = res.json();
             return data;
         }

@@ -15,7 +15,7 @@ const AddProduct = () => {
     const {data: users = {},  } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/user?email=${user?.email}`)
+            const res = await fetch(`https://mobile-bazar-server.vercel.app/user?email=${user?.email}`)
             const data = res.json()
             return data
         }
@@ -27,7 +27,7 @@ const AddProduct = () => {
     const { data: categories = [], refetch, isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/category`)
+            const res = await fetch(`https://mobile-bazar-server.vercel.app/category`)
             const data = res.json()
             return data
         }
@@ -62,7 +62,7 @@ const AddProduct = () => {
                       time,
                       status:users.status
                     }
-                    fetch(`http://localhost:5000/products`, {
+                    fetch(`https://mobile-bazar-server.vercel.app/products`, {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

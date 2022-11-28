@@ -7,7 +7,7 @@ const ReportedItems = () => {
     const { data: items = [], refetch, isLoading } = useQuery({
         queryKey: ['items'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/reportItem')
+            const res = await fetch('https://mobile-bazar-server.vercel.app/reportItem')
             const data = res.json();
             return data;
         }
@@ -16,7 +16,7 @@ const ReportedItems = () => {
 
         const proceed = window.confirm('This Product Will Permanently Delete')
         if (proceed) {
-            fetch(`http://localhost:5000/reportItem?id=${item._id}`, {
+            fetch(`https://mobile-bazar-server.vercel.app/reportItem?id=${item._id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -25,7 +25,7 @@ const ReportedItems = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
-                        fetch(`http://localhost:5000/adsProducts?id=${item.productId}`, {
+                        fetch(`https://mobile-bazar-server.vercel.app/adsProducts?id=${item.productId}`, {
                             method: 'DELETE',
                             headers: {
                                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -36,7 +36,7 @@ const ReportedItems = () => {
                                 if (data.deletedCount > 0) {
 
                                 }
-                        fetch(`http://localhost:5000/products/${item.productId}`, {
+                        fetch(`https://mobile-bazar-server.vercel.app/products/${item.productId}`, {
                             method: 'DELETE',
                             headers: {
                                 authorization: `bearer ${localStorage.getItem('accessToken')}`

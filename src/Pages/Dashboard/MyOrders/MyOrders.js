@@ -11,7 +11,7 @@ const MyOrders = () => {
     const { data: bookings = [], isLoading, refetch } = useQuery({
         queryKey: ['bookings'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/bookedProduct?userEmail=${user?.email}`)
+            const res = await fetch(`https://mobile-bazar-server.vercel.app/bookedProduct?userEmail=${user?.email}`)
             const data = res.json()
             return data
         }
@@ -20,7 +20,7 @@ const MyOrders = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you Confirm Delete This Product')
         if (proceed) {
-            fetch(`http://localhost:5000/bookedProduct?id=${id}`, {
+            fetch(`https://mobile-bazar-server.vercel.app/bookedProduct?id=${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`

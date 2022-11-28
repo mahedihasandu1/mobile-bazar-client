@@ -25,7 +25,7 @@ const ReportModal = ({ reportItem }) => {
             time,
             image,
         }
-        fetch('http://localhost:5000/reportItem', {
+        fetch('https://mobile-bazar-server.vercel.app/reportItem', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

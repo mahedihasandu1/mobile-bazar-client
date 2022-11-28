@@ -25,7 +25,7 @@ const BookingModal = ({ productData }) => {
             userEmail:user.email,
             sell
         }
-        fetch('http://localhost:5000/bookedProduct', {
+        fetch('https://mobile-bazar-server.vercel.app/bookedProduct', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -47,7 +47,7 @@ const BookingModal = ({ productData }) => {
     }
     return (
         <>
-            <input type="checkbox" id="product-booking" className="modal-toggle w-96" />
+         <input type="checkbox" id="product-booking" className="modal-toggle w-96" />
             <div className="modal">
                 <div className="modal-box relative">
                     <label htmlFor="product-booking" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
@@ -62,10 +62,7 @@ const BookingModal = ({ productData }) => {
                     </form>
                 </div>
             </div>
-
         </>
-
-
     );
 };
 
