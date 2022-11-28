@@ -23,7 +23,7 @@ const Advertisement = () => {
                </>
             }
             
-             <div  className='grid sm:grid-cols-1 md:grid-cols2 lg:grid-cols-3 gap-4'> 
+             <div  className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'> 
              { adds.length >0 &&
                 adds.map(ads=><div key={ads._id} className="card w-96 bg-base-100 shadow-xl">
                 <figure className='card-banner'><img className=' rounded' src={ads.image} alt="Shoes" /></figure>
