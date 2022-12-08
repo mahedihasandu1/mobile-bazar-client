@@ -25,7 +25,7 @@ const BookingModal = ({ productData }) => {
             userEmail:user.email,
             sell
         }
-        fetch('https://mobile-bazar-server.vercel.app/bookedProduct', {
+        fetch('https://mobile-bazar-server-mahedihasandu1.vercel.app/bookedProduct', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

@@ -87,7 +87,7 @@ const Login = () => {
                         }
                     </div>
                     <input className='btn btn-accent w-full my-2' value={"Login"} type="submit" />
-                    <p>New To Mobile Bazar<Link className='text-secondary font-semibold' to='/signup'>Create New Account</Link></p>
+                    <p>New To Mobile Bazar <Link className='text-secondary font-semibold' to='/signup'> Create New Account</Link></p>
                     <div className="divider">OR</div>
 
                 </form>

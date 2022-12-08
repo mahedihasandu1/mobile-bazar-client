@@ -13,7 +13,7 @@ const MyProduct = () => {
         queryKey: ['products'],
         queryFn: async () => {
             if (user.email) {
-                const res = await fetch(`https://mobile-bazar-server.vercel.app/products?email=${user?.email}`)
+                const res = await fetch(`https://mobile-bazar-server-mahedihasandu1.vercel.app/products?email=${user?.email}`)
                 const data = res.json()
                 return data
             }
@@ -36,7 +36,7 @@ const MyProduct = () => {
             time: product.time
         }
         // console.log(adds);
-        fetch('https://mobile-bazar-server.vercel.app/adsProducts', {
+        fetch('https://mobile-bazar-server-mahedihasandu1.vercel.app/adsProducts', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -64,7 +64,7 @@ const MyProduct = () => {
         console.log(id);
         const proceed = window.confirm('Are you Confirm Delete This Product')
         if (proceed) {
-            fetch(`https://mobile-bazar-server.vercel.app/products/${id}`, {
+            fetch(`https://mobile-bazar-server-mahedihasandu1.vercel.app/products/${id}`, {
                 method: 'DELETE',
                 headers:{
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -75,7 +75,7 @@ const MyProduct = () => {
                 .then(data => {
                     if(data.deletedCount >0){
                         toast.success("Delete successfully") 
-                        fetch(`https://mobile-bazar-server.vercel.app/adsProducts?id=${id}`,{
+                        fetch(`https://mobile-bazar-server-mahedihasandu1.vercel.app/adsProducts?id=${id}`,{
                     method:'DELETE',
                     headers:{
                         authorization: `bearer ${localStorage.getItem('accessToken')}`

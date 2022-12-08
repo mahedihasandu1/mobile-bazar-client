@@ -28,7 +28,7 @@ export const router=createBrowserRouter([
     {path:'/',errorElement:<ErrorPage></ErrorPage>,element:<Main></Main>,children:[
         {path:'/',element:<Home></Home>},
         {path:'/home',element:<Home></Home>},
-        {path:'/category/:id',element:<AllProductContainer></AllProductContainer>, loader:({params})=>fetch(`https://mobile-bazar-server.vercel.app/category/${params.id}`)},
+        {path:'/category/:id',element:<AllProductContainer></AllProductContainer>, loader:({params})=>fetch(`https://mobile-bazar-server-mahedihasandu1.vercel.app/category/${params.id}`)},
         {path:'/login',element:<Login></Login>},
         {path:'/signup',element:<SignUp></SignUp>},
         {path:'/blog',element:<Blog></Blog>},
@@ -44,7 +44,7 @@ export const router=createBrowserRouter([
         {path:'/dashboard/products',element:<AdminRoute><Products></Products></AdminRoute>},
         {path:'/dashboard/reportedItem',element:<AdminRoute><ReportedItems></ReportedItems></AdminRoute>},
         {path:'/dashboard/payment/:id',element:<PrivateRoute><Payment></Payment></PrivateRoute>,
-        loader:({params})=>fetch(`https://mobile-bazar-server.vercel.app/bookedProduct/${params.id}`)
+        loader:({params})=>fetch(`https://mobile-bazar-server-mahedihasandu1.vercel.app/bookedProduct/${params.id}`)
     },
     ]}
 ])

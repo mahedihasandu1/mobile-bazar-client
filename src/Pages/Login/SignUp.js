@@ -70,7 +70,7 @@ const SignUp = () => {
             photoURL,
             userType
         };
-        fetch(`https://mobile-bazar-server.vercel.app/users`, {
+        fetch(`https://mobile-bazar-server-mahedihasandu1.vercel.app/users`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -147,7 +147,7 @@ const SignUp = () => {
                         }
                     </div>
                     <input className='btn btn-accent w-full my-2' value={"Sign Up"} type="submit" />
-                    <p>Already have an Account<Link className='text-secondary font-semibold' to='/login'>Please LogIn</Link></p>
+                    <p>Already have an Account <Link className='text-secondary font-semibold' to='/login'> Please LogIn</Link></p>
                     <div className="divider"></div>
 
                 </form>

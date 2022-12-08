@@ -5,7 +5,7 @@ const useSeller = (email) => {
     const [seller,setSeller]=useState(false);
     useEffect(()=>{
         if(email){
-         fetch(`https://mobile-bazar-server.vercel.app/users/seller/${email}`)
+         fetch(`https://mobile-bazar-server-mahedihasandu1.vercel.app/users/seller/${email}`)
          .then(res=>res.json())
          .then(data=>{
             setSeller(data?.seller)

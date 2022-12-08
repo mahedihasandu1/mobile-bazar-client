@@ -25,7 +25,7 @@ const ReportModal = ({ reportItem }) => {
             time,
             image,
         }
-        fetch('https://mobile-bazar-server.vercel.app/reportItem', {
+        fetch('https://mobile-bazar-server-mahedihasandu1.vercel.app/reportItem', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -35,7 +35,7 @@ const ReportModal = ({ reportItem }) => {
             body: JSON.stringify(report)
         }).then(res => res.json())
             .then(data => {
-                // console.log(data)
+                console.log(data)
                 if (data.acknowledged === true) {
                     toast.success('Reported item Success full')
                     navigate('/')

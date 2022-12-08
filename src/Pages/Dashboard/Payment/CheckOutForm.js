@@ -15,7 +15,7 @@ const CheckOutForm = ({ data }) => {
     const navigate = useNavigate()
     // console.log(data);
     useEffect(() => {
-        fetch("https://mobile-bazar-server.vercel.app/create-payment-intent", {
+        fetch("https://mobile-bazar-server-mahedihasandu1.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -79,7 +79,7 @@ const CheckOutForm = ({ data }) => {
                 paymentId: _id
 
             }
-            fetch(`https://mobile-bazar-server.vercel.app/payments`, {
+            fetch(`https://mobile-bazar-server-mahedihasandu1.vercel.app/payments`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -92,14 +92,14 @@ const CheckOutForm = ({ data }) => {
                         setSuccess('Congratulation ! your Payment Successful')
                         toast.success('Congratulation ! your Payment Successful',paymentIntent.id)
                         setTransaction(paymentIntent.id)
-                        fetch(`https://mobile-bazar-server.vercel.app/products/${productId}`, {
+                        fetch(`https://mobile-bazar-server-mahedihasandu1.vercel.app/products/${productId}`, {
                             method: 'DELETE',
                         })
                             .then(res => res.json())
                             .then(data => {
                                 if (data.deletedCount > 0) {
                                    
-                                    fetch(`https://mobile-bazar-server.vercel.app/adsProducts?id=${productId}`, {
+                                    fetch(`https://mobile-bazar-server-mahedihasandu1.vercel.app/adsProducts?id=${productId}`, {
                                         method: 'DELETE',
                                         headers: {
                                             authorization: `bearer ${localStorage.getItem('accessToken')}`
